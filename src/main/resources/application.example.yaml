@@ -1,3 +1,6 @@
+api:
+  token:
+    secret: ${JWT_SECRET_KEY:${file:src/main/resources/jwt-key.secret}}
 spring:
   application:
     name: AuthAndRolesWithJwt
