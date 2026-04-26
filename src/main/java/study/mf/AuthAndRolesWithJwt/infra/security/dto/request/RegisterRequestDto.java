@@ -13,6 +13,8 @@ public record RegisterRequestDto(
         @Email(message = "Invalid email format", regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
         @NotBlank(message = "Email cannot be null or empty.")
         String email,
+        @NotBlank(message = "Password cannot be null or empty.")
+        String password,
         @NotNull(message = "Role cannot be null or empty")
         Roles role
 ) {
