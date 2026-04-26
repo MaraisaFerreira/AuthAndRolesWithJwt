@@ -1,5 +1,5 @@
 src/main/resources/application.yaml
-src/main/resources/jwt-key.txt
+src/main/resources/jwt-key.secret
 
 HELP.md
 target/
