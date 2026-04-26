@@ -1,2 +1,2 @@
 you should generate the secret key using this command on terminal
-openssl rand -base64 64 > src/main/resources/jwt-key.txt
+openssl genrsa > src/main/resources/jwt-key.txt
