@@ -5,7 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import study.mf.AuthAndRolesWithJwt.infra.security.dto.response.UserTokenDto;
+import study.mf.AuthAndRolesWithJwt.infra.security.dto.response.UserTokenDataDto;
 import study.mf.AuthAndRolesWithJwt.infra.security.entity.User;
 import study.mf.AuthAndRolesWithJwt.infra.security.entity.enums.Roles;
 
@@ -27,13 +27,13 @@ public class TokenService {
                 .sign(Algorithm.HMAC256(secret));
     }
 
-    public UserTokenDto decodeToken(String token){
+    public UserTokenDataDto decodeToken(String token){
        DecodedJWT decoded = JWT.require(Algorithm.HMAC256(secret))
                 .withIssuer("AuthAndRolesWithJwt-API")
                 .build()
                 .verify(token);
 
-       return new UserTokenDto(
+       return new UserTokenDataDto(
                decoded.getSubject(),
                Roles.valueOf(decoded.getClaim("role").asString())
        );
