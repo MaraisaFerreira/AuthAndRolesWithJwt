@@ -3,16 +3,16 @@ package study.mf.AuthAndRolesWithJwt.infra.security.controller;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import study.mf.AuthAndRolesWithJwt.infra.security.dto.request.UpdateUSerRoleRequestDto;
 import study.mf.AuthAndRolesWithJwt.infra.security.dto.request.LoginRequestDto;
 import study.mf.AuthAndRolesWithJwt.infra.security.dto.request.RegisterRequestDto;
 import study.mf.AuthAndRolesWithJwt.infra.security.dto.response.LoginResponseDto;
 import study.mf.AuthAndRolesWithJwt.infra.security.dto.response.RegisterResponseDto;
+import study.mf.AuthAndRolesWithJwt.infra.security.dto.response.UpdateUserRoleResponseDto;
 import study.mf.AuthAndRolesWithJwt.infra.security.entity.User;
 import study.mf.AuthAndRolesWithJwt.infra.security.service.TokenService;
 import study.mf.AuthAndRolesWithJwt.infra.security.service.UserService;
@@ -46,5 +46,11 @@ public class AuthController {
                 "Success",
                 token
         ));
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/changeRole")
+    public ResponseEntity<UpdateUserRoleResponseDto> changeRole(@Valid @RequestBody UpdateUSerRoleRequestDto requestDto){
+        return ResponseEntity.ok(userService.changeRole(requestDto));
     }
 }
