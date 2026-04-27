@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import study.mf.AuthAndRolesWithJwt.infra.security.dto.request.RegisterRequestDto;
 import study.mf.AuthAndRolesWithJwt.infra.security.dto.response.RegisterResponseDto;
 import study.mf.AuthAndRolesWithJwt.infra.security.entity.User;
+import study.mf.AuthAndRolesWithJwt.infra.security.entity.enums.Roles;
 import study.mf.AuthAndRolesWithJwt.infra.security.repository.UserRepository;
 
 @Service
@@ -28,7 +29,7 @@ public class UserService implements UserDetailsService {
                 requestDto.lastName(),
                 requestDto.email(),
                 passwordEncoder.encode(requestDto.password()),
-                requestDto.role()
+                Roles.BASIC
         ));
 
         return new RegisterResponseDto(user);

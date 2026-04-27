@@ -2,8 +2,6 @@ package study.mf.AuthAndRolesWithJwt.infra.security.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import study.mf.AuthAndRolesWithJwt.infra.security.entity.enums.Roles;
 
 public record RegisterRequestDto(
         @NotBlank(message = "FirstName cannot be null or empty.")
@@ -14,8 +12,6 @@ public record RegisterRequestDto(
         @NotBlank(message = "Email cannot be null or empty.")
         String email,
         @NotBlank(message = "Password cannot be null or empty.")
-        String password,
-        @NotNull(message = "Role cannot be null or empty")
-        Roles role
+        String password
 ) {
 }
